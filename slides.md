@@ -125,14 +125,14 @@ class: text-center
 
 ---
 layout: two-cols
-layoutClass: gap-8
+layoutClass: gap-6
 ---
 
 # La Solución: LLM-as-a-Judge
 
-<div v-click class="mt-8">
+<div v-click class="mt-4">
 
-```mermaid {scale: 0.9}
+```mermaid {scale: 0.75}
 graph TD
     A[Trace del Agente] --> B[Juez LLM<br/>Claude 3.5 Sonnet]
     B --> C[Score: 1-5]
@@ -143,40 +143,40 @@ graph TD
 
 </div>
 
-<div v-click class="mt-8 p-4 bg-blue-500/10 border border-blue-500 rounded">
-  <div class="font-bold mb-2">El Juez verifica:</div>
-  <ul class="text-sm">
-    <li>¿Eligió la herramienta correcta?</li>
-    <li>¿Los parámetros eran válidos?</li>
-    <li>¿Completó la tarea eficientemente?</li>
+<div v-click class="mt-4 p-3 bg-blue-500/10 border border-blue-500 rounded">
+  <div class="font-bold mb-2 text-sm">El Juez verifica:</div>
+  <ul class="text-xs space-y-1">
+    <li>¿Eligió herramienta correcta?</li>
+    <li>¿Parámetros válidos?</li>
+    <li>¿Completó eficientemente?</li>
   </ul>
 </div>
 
 ::right::
 
-<div v-click class="mt-16">
+<div v-click class="mt-4">
 
 ## Ejemplo de Trace
 
 ```python {1-3|5-7|9-11|all}
-# Input del usuario
-query = "¿Cuál es mi pedido #12345?"
+# Input
+query = "¿Mi pedido #12345?"
 
-# Trace del agente (malo)
-thought: "Voy a buscar pedidos"
-action: search_orders()  # ❌ Sin ID!
+# Agente (malo)
+thought: "Buscar pedidos"
+action: search_orders()
 parameters: {}
 
-# El Juez detecta
+# Juez detecta
 score: 2/5
-reason: "Missing order_id parameter"
+reason: "Missing order_id"
 ```
 
 </div>
 
-<div v-click class="mt-8 text-sm opacity-75">
-No podemos revisar mil logs a mano.<br/>
-Usamos un modelo más potente para auditar al agente más rápido.
+<div v-click class="mt-4 text-xs opacity-75">
+No revisamos logs manualmente.<br/>
+Modelo potente audita rápido.
 </div>
 
 ---
@@ -226,16 +226,16 @@ graph LR
 
 ---
 layout: two-cols
-layoutClass: gap-8
+layoutClass: gap-6
 ---
 
 # Métricas que Importan
 
-<div class="mt-8">
+<div class="mt-4">
 
 ## RAG Metrics (Antiguas)
 
-<div class="text-sm opacity-75 space-y-2 mt-4">
+<div class="text-xs opacity-75 space-y-1 mt-3">
   <div>✓ Faithfulness</div>
   <div>✓ Answer Relevance</div>
   <div>✓ Context Precision</div>
@@ -243,32 +243,32 @@ layoutClass: gap-8
 
 </div>
 
-<div v-click class="mt-8 p-4 bg-red-500/10 border border-red-500 rounded">
-  <div class="font-bold text-sm">❌ No sirven para agentes</div>
-  <div class="text-xs opacity-75">Solo evalúan texto, no acciones</div>
+<div v-click class="mt-6 p-3 bg-red-500/10 border border-red-500 rounded">
+  <div class="font-bold text-xs">❌ No sirven para agentes</div>
+  <div class="text-xs opacity-75">Solo evalúan texto</div>
 </div>
 
 ::right::
 
-<div v-click class="mt-8">
+<div v-click class="mt-4">
 
 ## Agent Metrics (Nuevas)
 
-<div class="space-y-4 mt-4">
+<div class="space-y-2 mt-3">
 
-<div class="p-3 bg-green-500/10 border border-green-500 rounded">
-  <div class="font-bold text-sm">1. Tool Selection Accuracy</div>
-  <div class="text-xs opacity-75">¿Sabía qué herramienta usar?</div>
+<div class="p-2 bg-green-500/10 border border-green-500 rounded">
+  <div class="font-bold text-xs">1. Tool Selection</div>
+  <div class="text-xs opacity-75">¿Herramienta correcta?</div>
 </div>
 
-<div class="p-3 bg-blue-500/10 border border-blue-500 rounded">
-  <div class="font-bold text-sm">2. Argument Validity</div>
-  <div class="text-xs opacity-75">¿Extrajo bien el dato del usuario?</div>
+<div class="p-2 bg-blue-500/10 border border-blue-500 rounded">
+  <div class="font-bold text-xs">2. Argument Validity</div>
+  <div class="text-xs opacity-75">¿Parámetros válidos?</div>
 </div>
 
-<div class="p-3 bg-purple-500/10 border border-purple-500 rounded">
-  <div class="font-bold text-sm">3. Steps to Solution</div>
-  <div class="text-xs opacity-75">¿Resolvió en 2 pasos o dio 10 vueltas?</div>
+<div class="p-2 bg-purple-500/10 border border-purple-500 rounded">
+  <div class="font-bold text-xs">3. Steps to Solution</div>
+  <div class="text-xs opacity-75">¿Eficiencia?</div>
 </div>
 
 </div>
@@ -299,42 +299,42 @@ class: text-center
 
 ---
 layout: two-cols
-layoutClass: gap-8
+layoutClass: gap-4
 ---
 
 # Demo: Flujo de Evaluación
 
-<div class="mt-8 space-y-4">
+<div class="mt-2 space-y-2">
 
-<div v-click class="flex items-start gap-3">
-  <div class="text-2xl">1️⃣</div>
+<div v-click class="flex items-start gap-2">
+  <div class="text-xl">1️⃣</div>
   <div>
-    <div class="font-bold">Golden Dataset</div>
-    <div class="text-sm opacity-75">JSON con preguntas + herramienta esperada</div>
+    <div class="font-bold text-sm">Golden Dataset</div>
+    <div class="text-xs opacity-75">Preguntas + herramienta esperada</div>
   </div>
 </div>
 
-<div v-click class="flex items-start gap-3">
-  <div class="text-2xl">2️⃣</div>
+<div v-click class="flex items-start gap-2">
+  <div class="text-xl">2️⃣</div>
   <div>
-    <div class="font-bold">Pregunta Trampa</div>
-    <div class="text-sm opacity-75">"Dame información del pedido sin ID"</div>
+    <div class="font-bold text-sm">Pregunta Trampa</div>
+    <div class="text-xs opacity-75">"Pedido sin ID"</div>
   </div>
 </div>
 
-<div v-click class="flex items-start gap-3">
-  <div class="text-2xl">3️⃣</div>
+<div v-click class="flex items-start gap-2">
+  <div class="text-xl">3️⃣</div>
   <div>
-    <div class="font-bold">Ver el Trace</div>
-    <div class="text-sm opacity-75">Consola AWS o logs locales</div>
+    <div class="font-bold text-sm">Ver el Trace</div>
+    <div class="text-xs opacity-75">Logs locales</div>
   </div>
 </div>
 
-<div v-click class="flex items-start gap-3">
-  <div class="text-2xl">4️⃣</div>
+<div v-click class="flex items-start gap-2">
+  <div class="text-xl">4️⃣</div>
   <div>
-    <div class="font-bold">Ejecutar Juez</div>
-    <div class="text-sm opacity-75">Script Python con Bedrock Runtime</div>
+    <div class="font-bold text-sm">Ejecutar Juez</div>
+    <div class="text-xs opacity-75">Script Python</div>
   </div>
 </div>
 
@@ -342,60 +342,61 @@ layoutClass: gap-8
 
 ::right::
 
-<div v-click class="mt-8">
+<div v-click class="mt-2">
 
 ## Ejemplo de Output
 
 ```python
-# Reporte de Evaluación
-+---------+-------+------------------+
-| Query   | Score | Issue            |
-+---------+-------+------------------+
-| "pedido | 2/5   | Missing order_id |
-| sin ID" |       | parameter        |
-+---------+-------+------------------+
+# Reporte
++-------+-------+----------+
+| Query | Score | Issue    |
++-------+-------+----------+
+| pedido| 2/5   | Missing  |
+| sin   |       | order_id |
+| ID    |       |          |
++-------+-------+----------+
 ```
 
-<div class="mt-4 p-3 bg-red-500/10 border border-red-500 rounded text-xs">
-  <div class="font-bold">🚨 El juez detectó el problema</div>
-  <div class="opacity-75">El agente intentó buscar sin tener el ID</div>
+<div class="mt-2 p-2 bg-red-500/10 border border-red-500 rounded text-xs">
+  <div class="font-bold">El juez detectó</div>
+  <div class="opacity-75">Agente sin ID</div>
 </div>
 
 </div>
 
-<div v-click class="mt-8 text-sm opacity-75">
-  Esto es lo que integraríais en vuestro pipeline de CI/CD
+<div v-click class="mt-2 text-xs opacity-75">
+  Integra en CI/CD
 </div>
 
 ---
 layout: two-cols
-layoutClass: gap-8
+layoutClass: gap-4
 ---
 
 # Resultados y Costes
 
-<div class="mt-8">
+<div class="mt-2">
 
 ## La Realidad Económica
 
-<div v-click class="mt-6 space-y-3">
+<div v-click class="mt-3 space-y-2">
 
-<div class="p-3 bg-purple-500/10 border border-purple-500 rounded">
-  <div class="font-bold text-sm">Claude Opus / GPT-4</div>
-  <div class="text-xs opacity-75">💰 Caro pero muy preciso</div>
-  <div class="text-xs mt-1">Uso: Golden Dataset creation</div>
+<div class="p-2 bg-purple-500/10 border border-purple-500 rounded">
+  <div class="font-bold text-xs">Claude Opus / GPT-4</div>
+  <div class="text-xs opacity-75">💰 Preciso</div>
+  <div class="text-xs mt-1">Golden Dataset</div>
 </div>
 
-<div class="p-3 bg-blue-500/10 border border-blue-500 rounded">
-  <div class="font-bold text-sm">Claude Sonnet</div>
-  <div class="text-xs opacity-75">💵 Balance perfecto</div>
-  <div class="text-xs mt-1">Uso: Evaluaciones importantes</div>
+<div class="p-2 bg-blue-500/10 border border-blue-500 rounded">
+  <div class="font-bold text-xs">Claude Sonnet</div>
+  <div class="text-xs opacity-75">💵 Balance</div>
+  <div class="text-xs mt-1">Importante eval</div>
 </div>
 
-<div class="p-3 bg-green-500/10 border border-green-500 rounded">
-  <div class="font-bold text-sm">Claude Haiku / Llama 3</div>
-  <div class="text-xs opacity-75">🪙 Barato y rápido</div>
-  <div class="text-xs mt-1">Uso: Evaluaciones diarias / CI/CD</div>
+<div class="p-2 bg-green-500/10 border border-green-500 rounded">
+  <div class="font-bold text-xs">Claude Haiku</div>
+  <div class="text-xs opacity-75">🪙 Rápido</div>
+  <div class="text-xs mt-1">CI/CD diario</div>
 </div>
 
 </div>
@@ -404,17 +405,17 @@ layoutClass: gap-8
 
 ::right::
 
-<div v-click class="mt-8">
+<div v-click class="mt-2">
 
-## Estrategia de Costes
+## Estrategia
 
-```mermaid {scale: 0.8}
+```mermaid {scale: 0.65}
 graph TD
-    A[Modelos Smart] --> B[Crear Golden Dataset]
-    B --> C[Una vez / Mensual]
+    A[Smart] --> B[Golden<br/>Dataset]
+    B --> C[1x/mes]
 
-    D[Modelos Fast] --> E[Evaluación Diaria]
-    E --> F[CI/CD Pipeline]
+    D[Fast] --> E[Eval<br/>Diaria]
+    E --> F[CI/CD]
 
     style A fill:#9b59b6
     style D fill:#51cf66
@@ -422,11 +423,11 @@ graph TD
 
 </div>
 
-<div v-click class="mt-8 p-4 bg-yellow-500/10 border border-yellow-500 rounded">
-  <div class="font-bold text-sm">⚠️ Nota Importante</div>
-  <div class="text-xs opacity-75 mt-2">
-    Evaluar duplica la inferencia (Agente + Juez).
-    Optimiza usando modelos Fast para volumen alto.
+<div v-click class="mt-3 p-2 bg-yellow-500/10 border border-yellow-500 rounded">
+  <div class="font-bold text-xs">Nota</div>
+  <div class="text-xs opacity-75">
+    Eval duplica inferencia.
+    Usa Fast para volumen alto.
   </div>
 </div>
 
